@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="please_grant_permissions">
+        Please grant all the permissions, before this application can run correctly!
+    </string>
+    <string name="permissions">Permission</string>
+    <string name="grant_again">Grant again</string>
+    <string name="camera_open_error">Something wrong with camera, please check!</string>
+</resources>
