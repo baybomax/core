@@ -9,7 +9,7 @@ import java.util.*
 /**
  * Datetime utility.
  */
-object DatetimeUtil {
+object DatetimeImpl {
 
     /**
      * The ISO time formatter.
@@ -38,7 +38,7 @@ object DatetimeUtil {
  * @param body
  * @see SimpleDateFormat
  */
-fun DatetimeUtil.emptyIf(body: () -> String): String =
+fun DatetimeImpl.emptyIf(body: () -> String): String =
     try {
         body()
     } catch (e: Exception) {
@@ -53,7 +53,7 @@ fun DatetimeUtil.emptyIf(body: () -> String): String =
  * @param org The ISO time
  * @return The formatted time : 'May 2, 2019'
  */
-fun DatetimeUtil.toMediumDateString(ctx: Context?,
+fun DatetimeImpl.toMediumDateString(ctx: Context?,
                                     org: String ?,
                                     formatter: SimpleDateFormat): String = emptyIf {
     DateFormat
@@ -69,7 +69,7 @@ fun DatetimeUtil.toMediumDateString(ctx: Context?,
  * @param org The ISO time
  * @return The formatted time : '2019-10-28(T)16:00:00(Z)'
  */
-fun DatetimeUtil.fromMediumDateString(ctx: Context?,
+fun DatetimeImpl.fromMediumDateString(ctx: Context?,
                                       org: String?,
                                       formatter: SimpleDateFormat): String = emptyIf {
     formatter.format(
@@ -85,7 +85,7 @@ fun DatetimeUtil.fromMediumDateString(ctx: Context?,
  * @param org The ISO time
  * @return The formatted time : 'Monday, January 3, 2000'
  */
-fun DatetimeUtil.toLongDateString(ctx: Context?,
+fun DatetimeImpl.toLongDateString(ctx: Context?,
                                   org: String?,
                                   formatter: SimpleDateFormat): String = emptyIf {
     formatter.parse(org).let {

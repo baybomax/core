@@ -9,6 +9,8 @@ import com.libs.core.R
  */
 sealed class DialogInput
 sealed class DialogOutput
+sealed class DIIgnore: DialogInput()
+sealed class DOIgnore: DialogOutput()
 
 interface DialogAction {
     /**
@@ -16,23 +18,33 @@ interface DialogAction {
      * @param act If positive action happen.
      * @param output The [DialogOutput] data
      */
-    fun onAction(act: Boolean = true, output: DialogOutput?)
+    fun <O: DialogOutput> onAction(act: Boolean = true, output: O?)
 }
 
 /**
  * Abstract super class [Dialog]
  * @constructor AbsDialog(context)
+ *
+ * How to use:
+ *  1.instance in onCreated()
+ *  2.setAction() & build() in onCreated()
+ *  3.show() when used
+ *  4.dismiss() when unused
  */
-abstract class AbsDialog(val ctx: Context) {
+abstract class AbsDialog<I: DialogInput, O: DialogOutput>(val ctx: Context) {
 
-    protected var input : DialogInput?  = null
-    protected var output: DialogOutput? = null
-    protected var action: DialogAction? = null
+    protected var input : I?  = null
+    protected var output: O?  = null
+    var action: DialogAction? = null
 
     var dialog: Dialog? = null
         protected set
 
     protected abstract fun getLayoutId(): Int
+
+    /**
+     * Only do initial/setEvents
+     */
     protected abstract fun handleLayout()
 
     protected open fun create() {
@@ -43,14 +55,19 @@ abstract class AbsDialog(val ctx: Context) {
     }
 
     /**
-     * Display a dialog.
+     * Should overwrite if there are data need display
      */
-    open fun show() {
-        if (null == dialog) {
-            build()
-        } else {
-            dialog?.show()
-        }
+    protected open fun display() {
+    }
+
+    /**
+     * Display a dialog.
+     * @param input The input data
+     */
+    open fun show(input: I? = null) {
+        this.input = input
+        display()
+        dialog?.show()
     }
 
     /**
@@ -59,8 +76,6 @@ abstract class AbsDialog(val ctx: Context) {
     open fun build() {
         create()
         handleLayout()
-
-        show()
     }
 
     /**
@@ -70,13 +85,11 @@ abstract class AbsDialog(val ctx: Context) {
         dialog?.dismiss()
     }
 
-    /**
-     * Destroy.
-     */
-    open fun destroy() {
-        dismiss()
-        dialog = null
-    }
 }
 
+//class TestDialog(ctx: Context): AbsDialog<DIIgnore, DOIgnore>(ctx){
+//    override fun getLayoutId(): Int { return 0 }
+//    override fun handleLayout() {}
+//    override fun display() { super.display() }
+//}
 
