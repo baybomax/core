@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -13,7 +14,7 @@ import com.libs.core.util.Loger
 import com.libs.core.view.Prompt
 
 @SuppressLint("Registered")
-open class BaseActivity: AppCompatActivity() {
+open class BaseActivity: AppCompatActivity(), View.OnClickListener {
 
     // ===================
     // Variable properties
@@ -95,6 +96,9 @@ open class BaseActivity: AppCompatActivity() {
      */
     protected open fun onBackPressedImpl(): Boolean {
         return true
+    }
+
+    override fun onClick(v: View?) {
     }
 }
 

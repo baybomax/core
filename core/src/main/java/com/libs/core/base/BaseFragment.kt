@@ -1,6 +1,7 @@
 package com.libs.core.base
 
 import android.os.Bundle
+import android.view.View
 import androidx.fragment.app.Fragment
 import com.libs.core.extents.visibleOrInvisible
 import com.libs.core.rx.RxBusPassenger
@@ -10,7 +11,7 @@ import com.libs.core.rx.RxBusPassenger
 // */
 //data class FragmentViewCreatedEvent(val fragment: BaseFragment, val view: View?): IEvent
 
-open class BaseFragment: Fragment() {
+open class BaseFragment: Fragment(), View.OnClickListener {
 
     open val eventDefines: RxBusPassenger = RxBusPassenger()
 
@@ -60,6 +61,9 @@ open class BaseFragment: Fragment() {
     override fun onDestroy() {
         eventDefines.leaveBus()
         super.onDestroy()
+    }
+
+    override fun onClick(v: View?) {
     }
 }
 
