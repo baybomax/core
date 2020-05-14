@@ -10,7 +10,10 @@ import android.net.ConnectivityManager
 import android.net.Uri
 import android.os.Build
 import androidx.core.os.ConfigurationCompat
+import com.libs.core.util.Toaster
 
+fun Context.showToast(resId: Int         ) = Toaster.showToast(this, resId)
+fun Context.showToast(text : CharSequence) = Toaster.showToast(this, text )
 
 /**
  * Convenient function to run on specify context thread.

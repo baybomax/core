@@ -11,23 +11,6 @@ import com.libs.core.R
 import com.libs.core.rx.RxBusPassenger
 import com.libs.core.util.Loger
 import com.libs.core.view.Prompt
-import com.libs.core.util.Toaster
-
-/**
- * Convenient function to show toast of activity.
- * @param text The char sequence.
- */
-fun BaseActivity.showToast(text: CharSequence) =
-    Toaster.showToast(this, text)
-
-/**
- * Convenient function to show toast of activity.
- * @param resId The resource id.
- */
-fun BaseActivity.showToast(resId: Int) =
-    Toaster.showToast(this, resId)
-
-// ====================================================
 
 @SuppressLint("Registered")
 open class BaseActivity: AppCompatActivity() {

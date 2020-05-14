@@ -2,8 +2,8 @@ package com.libs.core.base
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import com.libs.core.extents.visibleOrInvisible
 import com.libs.core.rx.RxBusPassenger
-import com.libs.core.util.visibleOrInvisible
 
 ///**
 // * Event class to indicate a fragment has finished create view.
